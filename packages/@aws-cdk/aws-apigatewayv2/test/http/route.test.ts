@@ -173,6 +173,9 @@ describe('HttpRoute', () => {
           connectionId: 'some-connection-id',
           connectionType: HttpConnectionType.VPC_LINK,
           uri: 'some-target-arn',
+          tlsConfig: {
+            serverNameToVerify: 'some-server-name',
+          },
         };
       }
     }
@@ -192,7 +195,11 @@ describe('HttpRoute', () => {
       IntegrationMethod: 'ANY',
       IntegrationUri: 'some-target-arn',
       PayloadFormatVersion: '1.0',
+      TlsConfig: {
+        ServerNameToVerify: 'some-server-name',
+      },
     });
+
     expect(stack).not.toHaveResource('AWS::ApiGatewayV2::VpcLink');
   });
 
